@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gTV-IL-0wX" customClass="CollectionViewCell" customModule="pokedex" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="z8G-Jp-bse">
+                        <rect key="frame" x="0.0" y="0.0" width="105" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="Shj-4r-uc1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exp-1w-t2Z">
+                        <rect key="frame" x="0.0" y="80" width="105" height="25"/>
+                        <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="exp-1w-t2Z" secondAttribute="bottom" id="Tyj-Qu-HCN"/>
+                <constraint firstItem="z8G-Jp-bse" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ega-pO-To5"/>
+                <constraint firstItem="exp-1w-t2Z" firstAttribute="top" secondItem="z8G-Jp-bse" secondAttribute="bottom" id="nEZ-fx-PjT"/>
+                <constraint firstAttribute="trailing" secondItem="z8G-Jp-bse" secondAttribute="trailing" id="nsh-Cx-D5h"/>
+                <constraint firstItem="z8G-Jp-bse" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sy4-zf-dVJ"/>
+                <constraint firstAttribute="trailing" secondItem="exp-1w-t2Z" secondAttribute="trailing" id="vAq-KY-i1v"/>
+                <constraint firstItem="exp-1w-t2Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xDu-OE-Kag"/>
+            </constraints>
+            <size key="customSize" width="105" height="105"/>
+            <connections>
+                <outlet property="nameLbl" destination="exp-1w-t2Z" id="6h0-mU-2xf"/>
+                <outlet property="thumbImg" destination="z8G-Jp-bse" id="heg-AJ-GIT"/>
+            </connections>
+            <point key="canvasLocation" x="-8.5" y="81.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="1" width="120" height="120"/>
+    </resources>
+</document>
