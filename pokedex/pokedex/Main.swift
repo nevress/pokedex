@@ -25,10 +25,18 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.isHidden = true
+    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell {
+            
+            let pokemon = PokemonModel(name: "Pokemon", pokedexID: indexPath.row)
+            cell.configureCell(pokemon: pokemon)
     
             return cell
             

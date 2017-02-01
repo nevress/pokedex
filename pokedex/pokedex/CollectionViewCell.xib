@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="105" height="105"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="z8G-Jp-bse">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z8G-Jp-bse">
                         <rect key="frame" x="0.0" y="0.0" width="105" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="Shj-4r-uc1"/>
@@ -50,7 +50,4 @@
             <point key="canvasLocation" x="-8.5" y="81.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="1" width="120" height="120"/>
-    </resources>
 </document>
