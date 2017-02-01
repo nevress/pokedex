@@ -21,6 +21,7 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
 
         collection.dataSource = self
         collection.delegate = self
+        parsePokemonCSV()
         
         self.collection.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
