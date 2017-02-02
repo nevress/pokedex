@@ -7,21 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
-class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate  {
 
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collection: UICollectionView!
     
     var pokemon = [PokemonModel]()
-    
+    var filteredPokemon = [PokemonModel]()
+    var musicPlayer: AVAudioPlayer!
+    var inSearchMode = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collection.dataSource = self
         collection.delegate = self
+        searchBar.delegate = self
+        
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
         parsePokemonCSV()
+        initAudio()
         
         self.collection.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
@@ -31,6 +40,24 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func initAudio() {
+        
+        let path = Bundle.main.path(forResource: "music", ofType: "mp3")!
+        
+        do {
+            
+            musicPlayer = try AVAudioPlayer(contentsOf: URL(string: path)!)
+            musicPlayer.prepareToPlay()
+            musicPlayer.numberOfLoops = -1 //nonstop loop
+            musicPlayer.play()
+            
+        } catch let err as NSError {
+            
+            print(err.debugDescription)
+        }
+        
     }
     
     func parsePokemonCSV() {
@@ -62,9 +89,19 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell {
             
-            let poke = pokemon[indexPath.row]
-            cell.configureCell(pokemon: poke)
-    
+            let poke: PokemonModel!
+            
+            if inSearchMode {
+                
+                poke = filteredPokemon[indexPath.row]
+                cell.configureCell(pokemon: poke)
+                
+            } else {
+                
+                poke = pokemon[indexPath.row]
+                cell.configureCell(pokemon: poke)
+            }
+            
             return cell
             
         } else {
@@ -80,6 +117,12 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        if inSearchMode {
+            
+            return filteredPokemon.count
+            
+        }
+        
         return pokemon.count
     }
     
@@ -93,5 +136,47 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         return CGSize(width: 105, height: 105)
         
     }
+    
+    @IBAction func musicBtnPressed(_ sender: UIButton) {
+        
+        if musicPlayer.isPlaying{
+            
+            musicPlayer.pause()
+            sender.alpha = 0.2
+        } else {
+            
+            musicPlayer.play()
+            sender.alpha = 1.0
+            
+        }
+
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text == nil || searchBar.text == "" {
+            
+            inSearchMode = false
+            collection.reloadData()
+            view.endEditing(true)
+            
+        } else {
+            
+            inSearchMode = true
+            
+            let lower = searchBar.text!.lowercased()
+            
+            filteredPokemon = pokemon.filter({$0.name.range(of: lower) != nil})
+            collection.reloadData()
+        }
+        
+    }
+    
+    
 
 }

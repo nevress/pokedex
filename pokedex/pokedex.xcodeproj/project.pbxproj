@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3527FA5E1E420E5D006F06FD /* PokemonFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3527FA5D1E420E5D006F06FD /* PokemonFont.ttf */; };
+		3527FA601E42110B006F06FD /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 3527FA5F1E42110B006F06FD /* music.png */; };
+		3527FA621E423165006F06FD /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3527FA611E423165006F06FD /* music.mp3 */; };
 		353827371E41F00A000EA885 /* csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353827361E41F00A000EA885 /* csv.swift */; };
 		3580433A1E408F5A0098F516 /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = 358043391E408F5A0098F516 /* pokemon.csv */; };
 		3580433F1E40913C0098F516 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3580433E1E40913C0098F516 /* PokemonModel.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3527FA5D1E420E5D006F06FD /* PokemonFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PokemonFont.ttf; sourceTree = "<group>"; };
+		3527FA5F1E42110B006F06FD /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
+		3527FA611E423165006F06FD /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		353827361E41F00A000EA885 /* csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csv.swift; sourceTree = "<group>"; };
 		358043391E408F5A0098F516 /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
 		3580433E1E40913C0098F516 /* PokemonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
@@ -53,6 +59,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3527FA5C1E420DEA006F06FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				358043391E408F5A0098F516 /* pokemon.csv */,
+				3527FA611E423165006F06FD /* music.mp3 */,
+				3527FA5F1E42110B006F06FD /* music.png */,
+				3527FA5D1E420E5D006F06FD /* PokemonFont.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		3580433B1E4090AD0098F516 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +81,7 @@
 		3580433D1E4091200098F516 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				3527FA5C1E420DEA006F06FD /* Resources */,
 				3580433B1E4090AD0098F516 /* Model */,
 			);
 			name = Data;
@@ -100,6 +118,7 @@
 		358043561E40A81A0098F516 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				353827361E41F00A000EA885 /* csv.swift */,
 				358043571E40A8450098F516 /* Constants.swift */,
 			);
 			name = Utilities;
@@ -136,12 +155,10 @@
 				358043401E4092620098F516 /* ViewControllers */,
 				3580433D1E4091200098F516 /* Data */,
 				35B0CBA51E4089EB00C62C58 /* AppDelegate.swift */,
-				353827361E41F00A000EA885 /* csv.swift */,
 				35B0CBA71E4089EB00C62C58 /* ViewController.swift */,
 				35B0CBA91E4089EB00C62C58 /* Main.storyboard */,
 				35B0CBAC1E4089EB00C62C58 /* Assets.xcassets */,
 				35B0CBAE1E4089EB00C62C58 /* LaunchScreen.storyboard */,
-				358043391E408F5A0098F516 /* pokemon.csv */,
 				35B0CBB11E4089EB00C62C58 /* Info.plist */,
 			);
 			path = pokedex;
@@ -210,10 +227,13 @@
 			files = (
 				35B0CBB01E4089EB00C62C58 /* LaunchScreen.storyboard in Resources */,
 				358043451E4093A90098F516 /* Main.xib in Resources */,
+				3527FA621E423165006F06FD /* music.mp3 in Resources */,
 				3580434F1E4098A70098F516 /* CollectionViewCell.xib in Resources */,
 				35B0CBAD1E4089EB00C62C58 /* Assets.xcassets in Resources */,
 				3580433A1E408F5A0098F516 /* pokemon.csv in Resources */,
+				3527FA601E42110B006F06FD /* music.png in Resources */,
 				35B0CBAB1E4089EB00C62C58 /* Main.storyboard in Resources */,
+				3527FA5E1E420E5D006F06FD /* PokemonFont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
