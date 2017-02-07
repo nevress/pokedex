@@ -6,10 +6,10 @@
 //  Copyright © 2017 mac. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 
-
-//struct SharedAppDelegate {
-//    static let SharedAppDelegate = UIApplication.shared.delegate as! AppDelegate
-//}
+struct Constants {
+    
+    static let pokemonDetailNotification = Notification.Name("pokemonDetailNotification")
+}

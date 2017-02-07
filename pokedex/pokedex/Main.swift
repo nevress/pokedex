@@ -10,19 +10,20 @@ import UIKit
 import AVFoundation
 
 class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate  {
-
+    
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var noPokeLbl: UILabel!
     
     var pokemon = [PokemonModel]()
     var filteredPokemon = [PokemonModel]()
     var musicPlayer: AVAudioPlayer!
-    var inSearchMode = false
-
+    //    var inSearchMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collection.dataSource = self
         collection.delegate = self
         searchBar.delegate = self
@@ -31,16 +32,22 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
         
         parsePokemonCSV()
         initAudio()
+        filteredPokemon = pokemon
         
+        //        NotificationCenter.default.addObserver(self, selector: #selector(action_detail(notification:)), name: Constants.pokemonDetailNotification, object: nil)
         self.collection.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
         self.navigationController?.navigationBar.isHidden = true
+        
     }
+    
+    
     
     func initAudio() {
         
@@ -84,23 +91,15 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             print(err.debugDescription)
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell {
             
             let poke: PokemonModel!
+            poke = filteredPokemon[indexPath.row]
+            cell.configureCell(pokemon: poke)
             
-            if inSearchMode {
-                
-                poke = filteredPokemon[indexPath.row]
-                cell.configureCell(pokemon: poke)
-                
-            } else {
-                
-                poke = pokemon[indexPath.row]
-                cell.configureCell(pokemon: poke)
-            }
             
             return cell
             
@@ -113,17 +112,25 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        var poke: PokemonModel!
+        poke = filteredPokemon[indexPath.row]
+        let controller = PokemonDetailViewController()
+        controller.pokemon = poke
+        self.navigationController?.pushViewController(controller, animated: true)
+        
     }
+    
+    func action_detail(notification: Notification) {
+        
+        let controller = PokemonDetailViewController()
+        controller.pokemon = notification.object as! PokemonModel
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if inSearchMode {
-            
-            return filteredPokemon.count
-            
-        }
-        
-        return pokemon.count
+        return filteredPokemon.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -149,7 +156,7 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
             sender.alpha = 1.0
             
         }
-
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -158,25 +165,35 @@ class Main: UIViewController, UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        filteredPokemon.removeAll()
         if searchBar.text == nil || searchBar.text == "" {
-            
-            inSearchMode = false
-            collection.reloadData()
-            view.endEditing(true)
-            
+            filteredPokemon = pokemon
         } else {
-            
-            inSearchMode = true
-            
             let lower = searchBar.text!.lowercased()
-            
             filteredPokemon = pokemon.filter({$0.name.range(of: lower) != nil})
-            collection.reloadData()
+            
+            //            for poke in pokemon {
+            //                if poke.name.lowercased().contains((searchBar.text?.lowercased())!)  {
+            //                    filteredPokemon.append(poke)
+            //                }
+            //            }
+            
+            
         }
+        collection.reloadData()
+        if filteredPokemon.count == 0 {
+            noPokeLbl.isHidden = false
+            noPokeLbl.alpha = 0.0
+            UIView.animate(withDuration: 1, animations: {
+                self.noPokeLbl.alpha = 1.0
+            })
+        } else {
+            noPokeLbl.isHidden = true
+        }
+        
         
     }
     
     
-
+    
 }
