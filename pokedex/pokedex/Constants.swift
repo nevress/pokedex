@@ -9,7 +9,13 @@
 
 import UIKit
 
-struct Constants {
-    
-    static let pokemonDetailNotification = Notification.Name("pokemonDetailNotification")
-}
+
+let URL_BASE = "http://pokeapi.co"
+let URL_POKEMON = "/api/v1/pokemon/"
+
+typealias DownloadComplete = () -> ()
+
+//struct Constants {
+//    
+//    static let pokemonDetailNotification = Notification.Name("pokemonDetailNotification")
+//}

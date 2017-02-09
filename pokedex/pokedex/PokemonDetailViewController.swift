@@ -32,8 +32,23 @@ class PokemonDetailViewController: UIViewController {
         super.viewDidLoad()
         
         nameLbl.text = pokemon.name
+        
+        pokemon.downloadPokemonDetail {
+            
+            
+            self.updateUI()
+        }
     }
 
+    func updateUI() {
+        
+        attackLbl.text = pokemon.attack
+        defenseLbl.text = pokemon.defense
+        heightLbl.text = pokemon.height
+        weightLbl.text = pokemon.weight
+        
+    }
+    
     @IBAction func bckBtnPressed(_ sender: UIButton) {
         
        _ = navigationController?.popViewController(animated: true)
